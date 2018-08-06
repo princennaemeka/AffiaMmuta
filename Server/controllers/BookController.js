@@ -1,4 +1,4 @@
-var model = require ('../models./Book');
+var model = require ('../models/Book');
 
 exports.addBook = function (req, res){
     var data = {
