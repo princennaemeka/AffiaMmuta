@@ -51,3 +51,10 @@ exports.updateUser = function(req, res){
         }
     });
 }
+exports.updatePassword = function(req, res){
+    var data = req.body;
+    // Load hash from your password DB.
+    var options = {_id: id};
+    return service.getUsersByParam(req, res, options); 
+    
+}
