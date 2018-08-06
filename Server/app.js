@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/affiammuta');
+mongoose.connect('mongodb://ibesoft:agwuibeogele7@ds239359.mlab.com:39359/affiammuta');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
