@@ -4,7 +4,7 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
 const schema = Joi.object().keys({
-    name: Joi.string().alphanum().min(3).max(30).required(),
+    username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().required(),
     email: Joi.string().email()
 });
@@ -14,11 +14,11 @@ exports.getUsers = function(req, res){
 }
 exports.addUser = function(req, res){
     var data = {
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     };
-    Joi.validate({name:data.name, email:data.email, password:data.password}, schema, function (err) {
+    Joi.validate({username:data.username, email:data.email, password:data.password}, schema, function (err) {
         if (err) {
             return res.json ({err:err.message});
         } else {
@@ -40,7 +40,7 @@ exports.getUserByParam = function(req, res){
 exports.updateUser = function(req, res){
     var id = req.params.id
     var options = req.body;
-    Joi.validate({name:options.name, email:options.email, password:options.password}, schema, function(err){
+    Joi.validate({username:options.username, email:options.email, password:options.password}, schema, function(err){
         if (err) {
             return res.json({err:err.message});
         } else {
