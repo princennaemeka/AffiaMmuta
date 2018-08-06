@@ -1,5 +1,5 @@
-var model = require ('../models./Book');
-var BaseRepository = require ('../repositories./BaseRepository');
+var model = require ('../models/Book');
+var BaseRepository = require ('../repositories/BaseRepository');
 
 function BookRepository(){
 
