@@ -1,4 +1,4 @@
-var repository = require('../repositories/UserRepository');
+var repository = require('../Repositories/UserRepository');
 const bcrypt = require('bcrypt');
 
 exports.addUser = function(req, res, data){
