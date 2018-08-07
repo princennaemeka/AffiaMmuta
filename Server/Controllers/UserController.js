@@ -1,5 +1,5 @@
-var model = require('../models/User');
-var service = require('../services/UserService');
+var model = require('../Models/User');
+var service = require('../Services/UserService');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
