@@ -3,7 +3,7 @@ function BaseRepository(model){
     this.model = model;
 }
 
-BaseRepository.prototype.getAllUsers = function(options, columns, callback){
+BaseRepository.prototype.getAll = function(options, columns, callback){
     this.model.find(options, columns, callback);
 }
 
