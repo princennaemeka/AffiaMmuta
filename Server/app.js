@@ -7,12 +7,9 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var fbLogin = require('./oauthLogin');
-//
-var passport = require('passport')
-  , FacebookStrategy = require('passport-facebook').Strategy;
-var config = require('./config');
-//
+var loginRouter = require('./routes/login');
+var User = require('./Models/User')
+
 var app = express();
 
 // view engine setup
@@ -25,6 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(passport.initialize());
+// app.use(passport.session());
 //enable CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods: POST, GET");
@@ -34,22 +33,11 @@ app.use(function(req, res, next) {
 });
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://ibesoft:agwuibeogele7@ds239359.mlab.com:39359/affiammuta');
-//---
-app.get('/connect/facebook', passport.authorize('facebook'));
+mongoose.connect('mongodb://localhost:27017/affiammuta');
 
-passport.use(new FacebookStrategy({
-    clientID: config.facebook.AppID,
-    clientSecret: config.facebook.Secret,
-    callbackURL: "http://localhost:3000/users/",
-    profileFields: ['id', 'emails', 'name']
-  },
-  function(accessToken, refreshToken, profile, done) {
-    console.log(accessToken);
-    //create new user here, then redirect to market place
-    }
-));
-//---
+//---PASSPPORT TEST BELOW---//
+
+//---PASSPORT TEST FINISHED---//
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -63,5 +51,6 @@ app.use(function(err, req, res, next) {
 });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;
