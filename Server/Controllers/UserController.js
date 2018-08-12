@@ -54,6 +54,7 @@ exports.getUserByParam = function(req, res){
         console.log("Error: "+exception);
     }
 }
+
 exports.updateUser = function(req, res){
     var id = req.params.id
     var options = req.body;
