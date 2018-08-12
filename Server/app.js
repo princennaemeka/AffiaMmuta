@@ -7,7 +7,12 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var fbLogin = require('./oauthLogin');
+//
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
+var config = require('./config');
+//
 var app = express();
 
 // view engine setup
@@ -20,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// catch 404 and forward to error handler
+//enable CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods: POST, GET");
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,6 +35,21 @@ app.use(function(req, res, next) {
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://ibesoft:agwuibeogele7@ds239359.mlab.com:39359/affiammuta');
+//---
+app.get('/connect/facebook', passport.authorize('facebook'));
+
+passport.use(new FacebookStrategy({
+    clientID: config.facebook.AppID,
+    clientSecret: config.facebook.Secret,
+    callbackURL: "http://localhost:3000/users/",
+    profileFields: ['id', 'emails', 'name']
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
+    //create new user here, then redirect to market place
+    }
+));
+//---
 
 // error handler
 app.use(function(err, req, res, next) {
