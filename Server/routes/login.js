@@ -1,11 +1,8 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var loginController = require('../../Server/Controllers/LoginController');
 var passport = require('../socialMediaLogin');
-
-var app = express();
-app.use(passport.initialize());
-app.use(passport.session());
 
 /* GET users listing. */
 router.post('/', loginController.loginUser);
