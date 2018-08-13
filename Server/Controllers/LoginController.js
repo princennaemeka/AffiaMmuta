@@ -25,6 +25,7 @@ exports.loginUser = function(req, res){
        successRedirect: '/users',
        failureRedirect: '/login'
    });
+   try{
     passport.use('login', new LocalStrategy(
             User.findOne({email: req.body.email}, function (err, user) {
                 if (err) { res.json({err: err}); }
@@ -35,12 +36,15 @@ exports.loginUser = function(req, res){
                 if (!isValidPassword(user, req.body.password)) {
                     res.json({ message: 'Incorrect password.' });
                 }
-                res.redirect('/users');
+                if (user && isValidPassword(user, req.body.password)){
+                    res.redirect('/users');
+                }
                 //return res.json({user: user});
                 
             }), function(email, password, done){
-
                 console.log(email);
             }
-        ))
+        ))}catch(exception){
+       console.log(exception);
+   }
 }
