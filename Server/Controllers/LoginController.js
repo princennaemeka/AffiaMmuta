@@ -35,7 +35,6 @@ exports.loginUser = function(req, res){
                 if (!isValidPassword(user, req.body.password)) {
                     res.json({ message: 'Incorrect password.' });
                 }
-                sessionStorage.setItem('u_id', user.id);
                 res.redirect('/users');
                 //return res.json({user: user});
                 
