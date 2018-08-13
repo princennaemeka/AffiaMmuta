@@ -15,10 +15,12 @@
     "joi": "^13.5.2",
     "mongoose": "^5.2.6",
     "morgan": "~1.9.0",
+    "multer": "^1.3.1",
     "nodemailer": "^4.6.7",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "resolve-from-npm": "^3.1.0"
   }
 }
