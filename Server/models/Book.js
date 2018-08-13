@@ -1,10 +1,12 @@
-var mongoose = require ('mongoose');
+var mongoose = require('mongoose');
 
+//Creating a Schema for Book
 var BookSchema = mongoose.Schema({
     author: String,
     title: String,
     price: Number,
-    bookurl: String,
+    bookImage: String,
+    bookContent: String,
     comments:[{type: mongoose.Schema.Types.ObjectId, ref: 'comment'}],
     commentCount: {type: Number, default: 0},
     buyersCount: {type: Number, default: 0},

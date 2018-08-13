@@ -16,13 +16,13 @@ BaseRepository.prototype.update = function (id, options, callback){
 }
 
 BaseRepository.prototype.getById = function (id, callback){
-    this.model.getById(id, callback);
+    this.model.findById(id, callback);
 }
 
-BaseRepository.prototype.get = function (options, callback){
-    this.model.get(options, callback);
+BaseRepository.prototype.getAll = function (options, columns, callback){
+   this.model.find(options, columns, callback);
 }
 
-module.exports = function BaseRepository (model){ 
+module.exports = function(model){ 
     return new BaseRepository(model);
 }

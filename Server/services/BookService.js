@@ -1,4 +1,6 @@
 var repository = require ('../repositories/BookRepository');
+var model = require('../models/Book');
+var fs = require('fs');
 
 exports.addBook = function (req, res, data){
     repository.add(data, function(err){
@@ -7,11 +9,33 @@ exports.addBook = function (req, res, data){
     });
 }
 
-exports.deleteBook = function (req, res, data){
-    repository.delete(data, function(err){
-        if (err) res.json ({err: err, message: 'error, book could not be found'});
-        res.json ({message: 'book deleted successfully'});
-    });
+exports.deleteBook = function (req, res, id){
+    repository.getById(id, function(err, data)
+    {
+        if (err){ res.json ({err: err, message: 'error, book could not be found'});
+    } else {
+        try {
+            fs.unlink(data.bookImage, function(err){
+                if (err) {
+                    res.json ({err:'thumbnail could not be deleted'});
+                    res.json ({message:'thumbnail uploaded succesfully'})
+                }
+                fs.unlink(data.bookContent, function(err){
+                if (err) {
+                    res.json({err: 'pdf could not be deleted'});
+                } else {
+                repository.delete(data, function(err){
+                if(err)res.json({err: "book could not be deleted"});
+                    res.json({message: "book deleted successfully"})
+                })
+            } 
+        })
+    })
+        } catch (exception){
+            console.log('Error: '+exception);
+        }
+    }        
+});
 }
 
 exports.updateBook = function (req, res, id, options){
@@ -22,14 +46,21 @@ exports.updateBook = function (req, res, id, options){
 }
 
 exports.getBookById = function (req, res, id){
-    repository.getById(id, function (err){
+    repository.getById(id, function (err, Book){
         if (err) res.json ({err: err, message: 'error, coulde not get book by id'});
         res.json (Book);
     });
 }
 
 exports.getBookByParam = function (req, res, options){
-    repository.get(options, function (err){
+    repository.getAll(options, function (err){
         if (err) res.json ({err: err, message: 'error, could not not retrieve book record'});
+    });
+}
+
+exports.getAllBooks = function(req, res){
+    repository.getAll({}, '-__v', function(err, Books){
+        if (err) res.json({err:err, message:'error, could not retrieve posts'});
+        res.json (Books);
     });
 }

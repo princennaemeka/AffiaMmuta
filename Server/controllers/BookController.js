@@ -1,23 +1,24 @@
 var model = require ('../models/Book');
-var model = require ('../services/BookService');
+var service = require ('../services/BookService');
 
 exports.addBook = function (req, res){
     var data = {
         author: req.body.author,
         title: req.body.title,
         price: req.body.price,
-        bookurl: req.body.bookurl,
+        bookImage: req.files[0].path,
+        bookContent: req.files[1].path,
         comments: req.body.comments,
         commentCount: req.body.commentCount,
         buyerCount: req.body.buyerCount,
-        ikenga: req.body.ikenga
+        ikenga: req.body.ikenga,
     };
     return service.addBook(req, res, data);
 }
 
 exports.deleteBook = function (req, res){
     var data = {_id: req.params.id};
-    return service.deleteBook(req, res, deleteBook);
+    return service.deleteBook(req, res, data);
 }
 
 exports.updateBook = function (req, res){
@@ -31,7 +32,7 @@ exports.getBookById = function (req, res){
     return service.getBookById(req, res, id);
 }
 
-exports.getAllBooks = function (req, res){
+exports.getBooks = function (req, res,){
 return service.getAllBooks(req, res);
 }
 
