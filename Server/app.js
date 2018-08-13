@@ -7,7 +7,10 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var loginRouter = require('./routes/login');
+var User = require('./Models/User')
+var passport = require('passport')
+var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
 
 // view engine setup
@@ -20,7 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// catch 404 and forward to error handler
+app.use(passport.initialize());
+app.use(passport.session());
+//enable CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods: POST, GET");
     res.header("Access-Control-Allow-Origin", "*");
@@ -43,5 +48,6 @@ app.use(function(err, req, res, next) {
 });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;

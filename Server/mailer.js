@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-exports.senMail = function sendMail(email, subject, userName, messageBody, button){
+exports.sendMail = function sendMail(email, subject, userName, messageBody, button){
   var mailTemplate  = `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -124,7 +124,7 @@ exports.senMail = function sendMail(email, subject, userName, messageBody, butto
         <div style="max-width: 600px; margin: 0 auto;" class="email-container">
             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 auto;">
                 <td style="padding: 20px 0; text-align: center">
-                    <img src="https://drive.google.com/file/d/1X0gUh266T9RYM3RyPhRZvfmp2e1xMLFS/view" width="200" height="50" alt="alt_text" border="0" style="height: auto;line-height: 15px; background-color: #ffffff;display: block;
+                    <img src="https://res.cloudinary.com/debugger/image/upload/v1533732905/affiaMmutaLogo-02.png" width="200" height="50" alt="alt_text" border="0" style="height: auto;line-height: 15px; background-color: #ffffff;display: block;
 margin: auto;">
                 </td>
                 </tr>
@@ -152,7 +152,7 @@ margin: auto;">
                             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 40px !important;">
                                 <tr>
                                     <td style="padding: 20px; font-family: sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #ffffff; background: #626A71;">
-                                        <br> Talk to us on the phone (408) 341-0600 or by email to contact@affiammuta.com
+                                        <br> Talk to us on the phone (234) 815-0600-321
                                         <br>
                                         <span class="unstyle-auto-detected-links">
                                             <br>
@@ -165,7 +165,7 @@ margin: auto;">
                             </table>
         </div>
     </center>
-    <h5 style="color: #f0f0f0">To stop recieving notifications, you can <a href="">Unsubscribe</a></h5>
+    <h4 style="text-align: center">To stop recieving notifications, you can <a href="https://affiammuta.herokuapp.com">Unsubscribe</a></h4>
 </body>
 </html>`
 
