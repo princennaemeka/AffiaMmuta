@@ -12,10 +12,7 @@
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
-<<<<<<< HEAD
-=======
     "joi": "^13.5.2",
->>>>>>> b64c73d6d18694f6cd784302ce25b4c03bbbefe4
     "mongoose": "^5.2.6",
     "morgan": "~1.9.0",
     "nodemailer": "^4.6.7",
