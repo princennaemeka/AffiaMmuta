@@ -1,0 +1,8 @@
+{
+  "name": "affiammuta",
+  "version": "0.0.0",
+  "scripts": {
+    "postinstall": "npm install --prefix ./Server",
+    "start": "npm start --prefix ./Server"
+  }
+}
