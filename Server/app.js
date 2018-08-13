@@ -6,16 +6,13 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
-<<<<<<< HEAD
 var booksRouter = require('./routes/BookRoute');
 
-=======
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var User = require('./Models/User')
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
->>>>>>> b64c73d6d18694f6cd784302ce25b4c03bbbefe4
 var app = express();
 
 // view engine setup
@@ -28,7 +25,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/AffiaMmuta', { useNewUrlParser: true });
 
@@ -36,11 +32,9 @@ app.use('/', indexRouter);
 app.use('/Books', booksRouter);
 
 // catch 404 and forward to error handler
-=======
 app.use(passport.initialize());
 app.use(passport.session());
 //enable CORS
->>>>>>> b64c73d6d18694f6cd784302ce25b4c03bbbefe4
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods: POST, GET");
     res.header("Access-Control-Allow-Origin", "*");
