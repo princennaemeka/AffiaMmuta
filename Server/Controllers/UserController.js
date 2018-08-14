@@ -76,3 +76,8 @@ exports.updatePassword = function(req, res){
     var options = {_id: id};
     return service.getUsersByParam(req, res, options); 
 }
+
+exports.logOutUser = function(req, res){
+    req.session.user = null;
+    res.json({message: 'logout successful'});
+}
