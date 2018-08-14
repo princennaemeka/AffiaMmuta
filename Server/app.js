@@ -4,13 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/BookRoute');
-
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
-var User = require('./Models/User')
+
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
@@ -19,14 +19,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(session({
+    secret: 'bAkAssi|>enn|$$\/[@isthe$@(r@+againsth@(k$',
+    saveUninitialized: false,
+    resave: false
+}));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/AffiaMmuta', { useNewUrlParser: true });
+mongoose.connect('mongodb://affiammuta:affiammuta000@ds239359.mlab.com:39359/affiammuta', { useNewUrlParser: true });
 
 app.use('/', indexRouter);
 app.use('/Books', booksRouter);
@@ -41,10 +48,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://ibesoft:agwuibeogele7@ds239359.mlab.com:39359/affiammuta');
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -55,6 +58,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
