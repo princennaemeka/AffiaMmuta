@@ -3,7 +3,6 @@ var service = require('../Services/UserService');
 const bcrypt = require('bcrypt');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session');
 
 //Hash password and compare with existing data
 function isValidPassword(user, password){
@@ -11,7 +10,7 @@ function isValidPassword(user, password){
 }
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -29,22 +28,18 @@ exports.loginUser = function(req, res){
     passport.use('login', new LocalStrategy(
             User.findOne({email: req.body.email}, function (err, user) {
                 if (err) { res.json({err: err}); }
-                //res.json({message: 'login success !'});
-                if (!user) {
-                    res.json({ message: 'Incorrect username.' });
-                }
-                if (!isValidPassword(user, req.body.password)) {
-                    res.json({ message: 'Incorrect password.' });
-                }
                 if (user && isValidPassword(user, req.body.password)){
-                    res.redirect('/users');
+                    //authentication was successful
+                    req.session.user = user._id;
+                    res.json({ message: 'Login successful.'});
+                } else {
+                    res.json({ message: 'Incorrect username or password.' });
                 }
-                //return res.json({user: user});
-                
             }), function(email, password, done){
                 console.log(email);
             }
-        ))}catch(exception){
+        ))
+    } catch(exception){
        console.log(exception);
    }
 }
