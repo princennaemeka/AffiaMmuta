@@ -19,6 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//configure our express-session
 app.use(session({
     secret: 'bAkAssi|>enn|$$\/[@isthe$@(r@+againsth@(k$',
     saveUninitialized: false,
@@ -35,12 +36,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://affiammuta:affiammuta000@ds239359.mlab.com:39359/affiammuta', { useNewUrlParser: true });
 
-app.use('/', indexRouter);
-app.use('/Books', booksRouter);
-
-// catch 404 and forward to error handler
+// configure passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+
 //enable CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods: POST, GET");
@@ -62,5 +61,6 @@ app.use(function(err, req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/Books', booksRouter);
 
 module.exports = app;
