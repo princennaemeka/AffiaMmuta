@@ -1,42 +1,34 @@
 var repository = require ('../repositories/BookRepository');
 var model = require('../models/Book');
-var fs = require('fs');
+var cloud = require('../Services/CloudinaryService');
 
 exports.addBook = function (req, res, data){
     repository.add(data, function(err){
-        if (err) res.json ({err: err, message: 'error, book could not be added'});
-        res.json ({message: 'book created successfully'});
+        if (err) {res.json ({err: err, message: 'error, book could not be added'});} else {
+        res.json ({message: 'book created successfully'});}
     });
 }
 
 exports.deleteBook = function (req, res, id){
     repository.getById(id, function(err, data)
     {
-        if (err){ res.json ({err: err, message: 'error, book could not be found'});
-    } else {
-        try {
-            fs.unlink(data.bookImage, function(err){
-                if (err) {
-                    res.json ({err:'thumbnail could not be deleted'});
-                    res.json ({message:'thumbnail uploaded succesfully'})
-                }
-                fs.unlink(data.bookContent, function(err){
-                if (err) {
-                    res.json({err: 'pdf could not be deleted'});
-                } else {
-                repository.delete(data, function(err){
-                if(err)res.json({err: "book could not be deleted"});
-                    res.json({message: "book deleted successfully"})
-                })
-            } 
-        })
-    })
-        } catch (exception){
-            console.log('Error: '+exception);
-        }
-    }        
-});
-}
+       try {
+           if (data !== null){
+               cloud.deleteFromCloud(data.bookImageID).then(()=>{
+                   cloud.deleteFromCloud(data.bookContentID).then(()=>{
+                       repository.delete(id, function(err){
+                            res.json({message: "book deleted successfully"});   
+                       });
+                   });
+               });
+           } else {
+               res.json({message: "Book not found, delete not successful"});
+           }
+       } catch(exception){
+
+       }
+    })        
+};
 
 exports.updateBook = function (req, res, id, options){
     repository.update(id, options, function (err){
@@ -61,6 +53,6 @@ exports.getBookByParam = function (req, res, options){
 exports.getAllBooks = function(req, res){
     repository.getAll({}, '-__v', function(err, Books){
         if (err) res.json({err:err, message:'error, could not retrieve posts'});
-        res.json (Books);
+        res.json(Books);
     });
 }
