@@ -11,10 +11,10 @@ exports.addBook = function (req, res){
         bookImageID: '',
         bookContent: req.files[1].path,
         bookContentID: '',
-        comments: req.body.comments,
-        commentCount: req.body.commentCount,
-        buyerCount: req.body.buyerCount,
-        ikenga: req.body.ikenga,
+        comments: [],
+        commentCount: 0,
+        buyerCount: 0,
+        ikenga: 0
     };
 
     //Use a promise based method to upload content before adding url to database
