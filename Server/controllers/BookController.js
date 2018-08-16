@@ -1,5 +1,6 @@
 var model = require ('../models/Book');
 var service = require ('../services/BookService');
+var cloud = require('../Services/CloudinaryService');
 
 exports.addBook = function (req, res){
     var data = {
@@ -7,13 +8,29 @@ exports.addBook = function (req, res){
         title: req.body.title,
         price: req.body.price,
         bookImage: req.files[0].path,
+        bookImageID: '',
         bookContent: req.files[1].path,
+        bookContentID: '',
         comments: req.body.comments,
         commentCount: req.body.commentCount,
         buyerCount: req.body.buyerCount,
         ikenga: req.body.ikenga,
     };
-    return service.addBook(req, res, data);
+
+    //Use a promise based method to upload content before adding url to database
+    try {
+        cloud.uploadToCloud(data.bookImage).then((result)=>{
+            data.bookImage = result.url;
+            data.bookImageID = result.ID;
+            cloud.uploadToCloud(data.bookContent).then((result)=>{
+                data.bookContent = result.url;
+                data.bookContentID = result.ID;
+                return service.addBook(req, res, data);
+        });
+    });
+    } catch (exception){
+        console.log("Error while adding book -> " + exception);
+    }
 }
 
 exports.deleteBook = function (req, res){
