@@ -14,7 +14,9 @@ exports.addBook = function (req, res){
         comments: [],
         commentCount: 0,
         buyerCount: 0,
-        ikenga: 0
+        ikenga: 0,
+        category: req.body.category,
+        description: req.body.description
     };
 
     //Use a promise based method to upload content before adding url to database
@@ -50,10 +52,18 @@ exports.getBookById = function (req, res){
 }
 
 exports.getBooks = function (req, res,){
-return service.getAllBooks(req, res);
+    return service.getAllBooks(req, res, {});
+}
+
+exports.getBooksByCategory = function(req, res){
+    return service.getAllBooks(req, res, {category: req.params.category});
 }
 
 exports.getBookByParam = function (req, res){
      var options = req.query;
      return service.getBookByParam(req, res, options);
+}
+
+exports.getLatestBooks = function(req, res){
+    return service.getRecentBooks(req, res, Number.parseInt(req.query.count));
 }

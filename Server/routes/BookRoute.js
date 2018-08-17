@@ -11,5 +11,7 @@ router.get('/search', BookController.getBookByParam);
 router.get('/book/:id', BookController.getBookById);
 router.post('/update/:id', BookController.updateBook);
 router.post('/addBook', uploadService.upload.any(), BookController.addBook);
+router.get('/latest', BookController.getLatestBooks);
+router.get('/:category', BookController.getBooksByCategory);
 
 module.exports = router;

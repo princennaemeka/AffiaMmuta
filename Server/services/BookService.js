@@ -50,9 +50,16 @@ exports.getBookByParam = function (req, res, options){
     });
 }
 
-exports.getAllBooks = function(req, res){
-    repository.getAll({}, '-__v', function(err, Books){
-        if (err) res.json({err:err, message:'error, could not retrieve posts'});
+exports.getAllBooks = function(req, res, options){
+    repository.getAll(options, '-__v', function(err, Books){
+        if (err) res.json({err:err, message:'error, could not retrieve books'});
         res.json(Books);
+    });
+}
+//Return latest books from DB based on provided count
+exports.getRecentBooks = function(req, res, count){
+    repository.getRecentBooks(count, {}, '-__v', function(err, books){
+        if (err) res.json({err:err, message:'error, could not get latest books'});
+        res.json(books);
     });
 }
