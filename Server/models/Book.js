@@ -13,6 +13,8 @@ var BookSchema = mongoose.Schema({
     commentCount: {type: Number, default: 0},
     buyersCount: {type: Number, default: 0},
     ikenga: {type: Number, default: 0},
+    category: String,
+    description: String
 });
 
 module.exports = mongoose.model('Book', BookSchema);
