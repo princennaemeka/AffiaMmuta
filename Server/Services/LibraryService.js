@@ -1,4 +1,3 @@
-var repository = require ('../repositories/LibraryRepository');
 var model = require('../models/Library');
 var bookModel = require('../models/Book');
 
