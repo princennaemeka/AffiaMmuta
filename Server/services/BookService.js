@@ -17,7 +17,7 @@ exports.deleteBook = function (req, res, id){
                cloud.deleteFromCloud(data.bookImageID).then(()=>{
                    cloud.deleteFromCloud(data.bookContentID).then(()=>{
                        repository.delete(id, function(err){
-                            res.json({message: "book deleted successfully"});   
+                            res.json({message: "book deleted successfully"});
                        });
                    });
                });
@@ -61,5 +61,17 @@ exports.getRecentBooks = function(req, res, count){
     repository.getRecentBooks(count, {}, '-__v', function(err, books){
         if (err) res.json({err:err, message:'error, could not get latest books'});
         res.json(books);
+    });
+}
+
+exports.increaseClap = function(req, res, id, ikenga){
+    model.findById(id, function(err, book){
+        if (err) {
+            res.json({err: err, message: 'error, clap not successful'});
+        } else {
+            book.ikenga = book.ikenga + ikenga;
+            book.save();
+            res.json({message: 'Clap increased'});
+        }
     });
 }

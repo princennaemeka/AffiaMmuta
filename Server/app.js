@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/BookRoute');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var profileRouter = require('./routes/profile');
 
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.Promise = global.Promise;
+//mongoose.connect('mongodb://localhost:27017/affiammuta', { useNewUrlParser: true });
 mongoose.connect('mongodb://affiammuta:affiammuta000@ds239359.mlab.com:39359/affiammuta', { useNewUrlParser: true });
 
 // configure passport sessions
@@ -62,5 +64,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/Books', booksRouter);
+app.use('/profile', profileRouter);
 
 module.exports = app;

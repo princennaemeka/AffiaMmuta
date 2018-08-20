@@ -4,9 +4,9 @@ var profileController = require('../../Server/Controllers/ProfileController');
 var checkAuth = require('../checkauth');
 
 /* GET users listing. */
-router.get('/library', checkAuth.isAuthenticated, profileController.viewLibrary);
+router.get('/library', profileController.viewLibrary);
 router.post('/library/add', profileController.addBookToLibrary);
-router.get('/read/:book', profileController.readBook);
-router.post('/read/:book/clap', profileController.clapForABook);
+router.get('/read', profileController.readBook);
+router.get('/read/clap', profileController.clapForABook);
 
 module.exports = router;

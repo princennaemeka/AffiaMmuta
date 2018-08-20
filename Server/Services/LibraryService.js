@@ -1,19 +1,32 @@
-var repository = require ('../repositories/BookRepository');
+var repository = require ('../repositories/LibraryRepository');
 var model = require('../models/Library');
+var bookModel = require('../models/Book');
 
-exports.addBook = function (req, res, data){
-    repository.add(data, function(err){
-        if (err) {res.json ({err: err, message: 'error, book could not be added'});} else {
-        res.json ({message: 'book created successfully'});}
+//Adds new book to user's library and update book's buyersCount
+exports.addBookToLibrary = function (req, res, data){
+    model.findOne({user: data.user}, function(err, userData){
+        if (err) {res.json({err: err, message: "error, book could not be added to user library"})} else {
+            if (userData !== null){
+                userData.books.push(data.books);
+                userData.save();
+                bookModel.findById(data.books, function(err, book){
+                    book.buyersCount++;
+                    book.save();
+                });
+            } else {
+                model.create(data);
+            }
+            res.json({message: 'book added successfully to user library'});
+        }
     });
 }
 
-exports.getBooks = function(req, res, options){
-    repository.getAll(options, function(err, userLibrary){
+exports.getBooksFromLibrary = function(req, res, options){
+    model.findOne(options, function(err, userData){
         if (err) {
             res.json({err: err, message: 'error, user library could not be fetched'});
         } else {
-            res.json({library: userLibrary});
+            res.json({library: userData});
         }
-    });
+    }).populate('books');
 }
