@@ -1,6 +1,6 @@
 var model = require('../Models/User');
 var libraryService = require('../Services/LibraryService');
-var bookService = require('../Services/BookService');
+var bookService = require('../services/BookService');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
