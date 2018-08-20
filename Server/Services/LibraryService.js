@@ -1,5 +1,5 @@
-var model = require('../models/Library');
-var bookModel = require('../models/Book');
+var model = require('../Models/Library');
+var bookModel = require('../Models/Book');
 
 //Adds new book to user's library and update book's buyersCount
 exports.addBookToLibrary = function (req, res, data){

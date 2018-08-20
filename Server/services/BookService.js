@@ -39,7 +39,7 @@ exports.updateBook = function (req, res, id, options){
 
 exports.getBookById = function (req, res, id){
     repository.getById(id, function (err, Book){
-        if (err) res.json ({err: err, message: 'error, coulde not get book by id'});
+        if (err) res.json ({err: err, message: 'error, could not get book by id'});
         res.json ({book: Book});
     });
 }
