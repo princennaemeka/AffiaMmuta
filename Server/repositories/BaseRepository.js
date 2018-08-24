@@ -22,7 +22,10 @@ BaseRepository.prototype.delete = function(options, callback){
 BaseRepository.prototype.update= function(id, options, callback){
     this.model.findByIdAndUpdate(id, options, callback);
 }
-
+BaseRepository.prototype.getRecentBooks = function(count, options, columns, callback){
+    var query = this.model.find(options, columns, {limit: count, sort: {'_id': -1}});
+    query.exec(callback);
+}
 module.exports = function(model){
     return new BaseRepository(model);
 }
