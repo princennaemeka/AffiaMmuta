@@ -19,7 +19,7 @@ exports.addBook = function (req, res){
         description: req.body.description
     };
 
-    //Use a promise based method to upload content before add+ing url to database
+    //Use a promise based method to upload content before saving url to database
     try {
         cloud.uploadToCloud(data.bookImage).then((result)=>{
             data.bookImage = result.url;
