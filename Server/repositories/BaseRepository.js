@@ -26,6 +26,7 @@ BaseRepository.prototype.getRecentBooks = function(count, options, columns, call
     var query = this.model.find(options, columns, {limit: count, sort: {'_id': -1}});
     query.exec(callback);
 }
+
 module.exports = function(model){
     return new BaseRepository(model);
 }
