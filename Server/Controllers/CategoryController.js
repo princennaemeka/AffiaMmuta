@@ -12,5 +12,9 @@ exports.addCategory = function (req, res){
 exports.deleteCategory = function (req, res){
     var data = {_id: req.params.id};
     return service.deleteCategory(req, res, data);
-    
 }
+
+exports.getCategoryById = function (req, res){
+    var id = req.params.id;
+    return service.getCategoryById(req, res, id);
+}    
