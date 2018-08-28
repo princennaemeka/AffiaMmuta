@@ -4,6 +4,6 @@ var model = require('../models/Category');
 var CategoryController = require ('../controllers/CategoryController');
 
 /* GET CategoryRoute listing. */
-router.post('/add', CategoryController.addCategory);
+router.post('/', CategoryController.addCategory);
 
 module.exports = router;
