@@ -13,6 +13,7 @@ var loginRouter = require('./routes/login');
 var profileRouter = require('./routes/profile');
 var paymentRouter = require('./routes/PaymentRoute');
 var commentRouter = require('./routes/CommentRoute');
+var categoryRouter = require('./routes/CategoryRoute');
 
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -69,5 +70,6 @@ app.use('/Books', booksRouter);
 app.use('/profile', profileRouter);
 app.use('/payment', paymentRouter);
 app.use('/comments', commentRouter);
+app.use('/category', categoryRouter);
 
 module.exports = app;
