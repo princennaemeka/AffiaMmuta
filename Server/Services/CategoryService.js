@@ -21,3 +21,10 @@ exports.getCategoryById =  function (req, res, id){
         res.json ({category: Category});
     });
 }
+
+exports.getAllCategories = function (req, res, options){
+    repository.getAll(options, function(err, Categories){
+        if (err) res.json ({err: err, message: 'error, could not retrieve categories'});
+        res.json (Categories);
+    });
+}
