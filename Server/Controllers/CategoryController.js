@@ -18,3 +18,7 @@ exports.getCategoryById = function (req, res){
     var id = req.params.id;
     return service.getCategoryById(req, res, id);
 }    
+
+exports.getCategory = function (req, res){
+    return service.getAllCategories(req, res);
+}
