@@ -14,3 +14,10 @@ exports.deleteCategory = function (req, res, id){
         res.json ({message: 'category deleted successfully'});
     });
 }
+
+exports.getCategoryById =  function (req, res, id){
+    repository.getById(id, function(err, Category){
+        if (err) res.json ({err: err, message: 'error, category could not be retrieved by id'});
+        res.json ({category: Category});
+    });
+}
