@@ -1,4 +1,4 @@
-var model = require('../Models/Category');
+var model = require('../models/Category');
 var service = require('../Services/CategoryService');
 
 exports.addCategory = function (req, res){
