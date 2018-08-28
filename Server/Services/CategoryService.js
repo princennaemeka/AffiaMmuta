@@ -1,5 +1,5 @@
 var repository = require('../repositories/CategoryRepository');
-var model = require('../Models/Category');
+var model = require('../models/Category');
 
 exports.addCategory = function (req, res, data){
     repository.add(data, function(err){
