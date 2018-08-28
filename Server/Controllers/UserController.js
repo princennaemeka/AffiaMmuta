@@ -78,6 +78,6 @@ exports.updatePassword = function(req, res){
 }
 
 exports.logOutUser = function(req, res){
-    req.session.user = null;
+    //req.session.user = null;
     res.json({message: 'logout successful'});
 }
