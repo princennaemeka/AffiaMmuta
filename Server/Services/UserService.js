@@ -6,8 +6,8 @@ exports.addUser = function(req, res, data){
     repository.add(data, function(err, user){
         if (err) res.json({err:err, message:'error, user could not be created.'});
         res.json({message: 'user created successfully'});
-        var button = `<a class="button-a button-a-primary" href="https://affiammuta.herokuapp.com/" style="background: #85A64B; border: 1px solid #8db34d; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;">Visit Marketplace</a>`;
-        var body = 'Thanks for joining us! You’ll be receiving newsletters and updates crafted by the AffiaMutta team to speed up your learning and experience. Nno !'
+        var button = `Go to Market`;
+        var body = 'Thank you for joining us! You will soon be receiving newsletters and updates crafted by the AffiaMutta team to speed up your learning and experience. We are committed to increase igbo literacy with technology. Happy Learning'
         mailer.sendMail(user.email, 'Welcome to Affia-Mmuta', user.username, body, button);
     });
 }

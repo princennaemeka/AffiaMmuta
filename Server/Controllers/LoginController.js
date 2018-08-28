@@ -30,8 +30,8 @@ exports.loginUser = function(req, res){
                 if (err) { res.json({err: err}); }
                 if (user && isValidPassword(user, req.body.password)){
                     //authentication was successful
-                    req.session.user = user._id;
-                    res.json({ message: 'Login successful.'});
+                    //req.session.user = user._id;
+                    res.json({ userId:user._id, message: 'Login successful.'});
                 } else {
                     res.json({ message: 'Incorrect username or password.' });
                 }
