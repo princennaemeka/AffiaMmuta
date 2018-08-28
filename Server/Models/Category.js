@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var CategorySchema = mongoose.Schema({
-    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
-    title: req.body.title
+    books: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
+    categorytitle: String,
 });
 
-module.exports = mongoose.model('Category', CategorySchema);
+exports = mongoose.model('Category', CategorySchema);
