@@ -1,6 +1,7 @@
 //require('dotenv').config();//
 var model = require('../Models/Payment');
 var service = require('../Services/PaymentService');
+var libraryService = require('../Services/LibraryService')
 //var crypto = require('crypto');
 //var secret = process.env.Secret_Key;
 
@@ -18,7 +19,7 @@ exports.addPayment = function (req, res){
     // Do something with event  
   //}
  // res.send(200);
-    return service.addPayment(req, res, data);
+    return libraryService.addBookToLibrary(req, res, data);
 }
 
 exports.deletePayment = function (req, res){
