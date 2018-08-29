@@ -3,7 +3,7 @@ var bookModel = require('../models/Book');
 
 //Adds new book to user's library and update book's buyersCount
 exports.addBookToLibrary = function (req, res, data){
-    model.findOne({user: data.user}, function(err, userData){
+    model.findOne({user: data.user}, function(err, userData, paymentData){
         if (err) {res.json({err: err, message: "error, book could not be added to user library"})} else {
             if (userData !== null){
                 userData.books.push(data.books);
