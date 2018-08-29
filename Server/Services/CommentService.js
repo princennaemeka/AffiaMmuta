@@ -5,11 +5,9 @@ var bookController = require('../controllers/BookController');
 exports.addComment = function (req, res, data){
     repository.add(data, function(err, comment){
    bookRepository.getById(data.book, function(err, book){
-       //console.log(data.book);
-      // console.log(book);
       book.comments.push(comment._id);
         book.commentCount++;
-           // book.save();
+           book.save();
             if (err) res.json({err: err, message: 'error, comment could not be added'});
             res.json ({message: 'comment created successfully'});
         })
