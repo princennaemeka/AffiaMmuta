@@ -22,7 +22,3 @@ exports.getCategory = function (req, res){
     return service.getAllCategories(req, res);
 }
 
-exports.getCategoryByParam = function (req, res){
-     var options = req.query;
-     return service.getCategoryByParam(req, res, options);
-}

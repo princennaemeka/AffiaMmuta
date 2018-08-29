@@ -9,7 +9,7 @@ exports.addCategory = function (req, res, data){
 }
 
 exports.deleteCategory = function (req, res, id){
-    repository.getById(id, function(err){
+    repository.delete(id, function(err, data){
         if (err) res.json ({err: err, message: 'errror, category could not be deleted'});
         res.json ({message: 'category deleted successfully'});
     });
