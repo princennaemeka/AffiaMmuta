@@ -23,6 +23,10 @@ BaseRepository.prototype.update= function(id, options, callback){
     this.model.findByIdAndUpdate(id, options, callback);
 }
 
+BaseRepository.prototype.getWithPopulate = function(options, columns, param, param2, callback){
+    this.model.find(options, columns).populate(param).populate(param2).exec(callback);
+}
+
 module.exports = function(model){
     return new BaseRepository(model);
 }
