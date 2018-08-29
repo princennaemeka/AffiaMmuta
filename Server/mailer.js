@@ -8,166 +8,127 @@ var transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = function sendMail(email, subject, userName, messageBody, button){
-  var mailTemplate  = `<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="x-apple-disable-message-reformatting">
-    <title>Welcome to AffiaMmuta</title>
-    <style>
-        html,
-        body {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            height: 100% !important;
-            width: 100% !important;
-        }
-
-        * {
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        div[style*="margin: 16px 0"] {
-            margin: 0 !important;
-        }
-
-        table,
-        td {
-            mso-table-lspace: 0pt !important;
-            mso-table-rspace: 0pt !important;
-        }
-
-        table {
-            border-spacing: 0 !important;
-            border-collapse: collapse !important;
-            table-layout: fixed !important;
-            margin: 0 auto !important;
-        }
-
-        table table table {
-            table-layout: auto;
-        }
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        *[x-apple-data-detectors],
-        .unstyle-auto-detected-links *,
-        .aBn {
-            border-bottom: 0 !important;
-            cursor: default !important;
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-        }
-
-        .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
-        }
-
-        img.g-img+div {
-            display: none !important;
-        }
-
-        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-            .email-container {
-                min-width: 320px !important;
-            }
-        }
-
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            .email-container {
-                min-width: 375px !important;
-            }
-        }
-
-        @media only screen and (min-device-width: 414px) {
-            .email-container {
-                min-width: 414px !important;
-            }
-        }
-    </style>
-    <style>
-        .button-td,
-        .button-a {
-            transition: all 100ms ease-in;
-        }
-
-        .button-td-primary:hover,
-        .button-a-primary:hover {
-            background: #555555 !important;
-            border-color: #555555 !important;
-        }
-
-        @media screen and (max-width: 600px) {
-            .email-container p {
-                font-size: 17px !important;
-            }
-        }
-    </style>
-</head>
-
-<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #ffffff;">
-    <center style="width: 100%; background-color: #ffffff;">
-        <div style="max-width: 600px; margin: 0 auto;" class="email-container">
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 auto;">
-                <td style="padding: 20px 0; text-align: center">
-                    <img src="https://res.cloudinary.com/debugger/image/upload/v1533732905/affiaMmutaLogo-02.png" width="200" height="50" alt="alt_text" border="0" style="height: auto;line-height: 15px; background-color: #ffffff;display: block;
-margin: auto;">
-                </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #ffffff;">
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                                <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                                    <h1 style="margin: 0 0 10px 0; font-family: sans-serif; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">Hello ${userName},</h1>
-                                    <p style="margin: 0;">${messageBody}</p>
-                                </td>
+  var mailTemplate  = `<html>
+  <body class="no-padding" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;">
+    <table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #efefef;"
+      cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td>
+            <div role="banner">
+              <div class="preheader" style="Margin: 0 auto;max-width: 560px;min-width: 280px; width: 280px;width: calc(28000% - 167440px);">
+                <div style="border-collapse: collapse;display: table;width: 100%;">
+                  <div class="snippet" style="display: table-cell;Float: left;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 140px; width: 140px;width: calc(14000% - 78120px);padding: 10px 0 5px 0;color: #adb3b9;font-family: sans-serif;">
+                  </div>
+                  <div class="webversion" style="display: table-cell;Float: left;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 139px; width: 139px;width: calc(14100% - 78680px);padding: 10px 0 5px 0;text-align: right;color: #adb3b9;font-family: sans-serif;">
+                  </div>
+                </div>
+              </div>
+              <div class="header" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);"
+                id="emb-email-header-container"></div>
+                <div class="logo emb-logo-margin-box" style="font-size: 26px;line-height: 32px;Margin-top: 6px;Margin-bottom: 20px;color: #c3ced9;font-family: Roboto,Tahoma,sans-serif;Margin-left: 20px;Margin-right: 20px;"
+                  align="center">
+                  <div class="logo-center" align="center" id="emb-email-header">
+                    <img style="display: block;height: auto;width: 100%;margin-top:-60px;border: 0;max-width: 319px;" src="https://res.cloudinary.com/debugger/image/upload/v1534426559/ggmsv9uisxkjnpymw8rk.png"
+                      alt="AffiaMmuta" width="319" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="section">
+              <div class="layout one-col fixed-width" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+                <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
+                  <div class="column" style="text-align: left;color: #8e959c;font-size: 14px;line-height: 21px;font-family: sans-serif;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);padding-top: 10px;padding-bottom: 10px;border:1px solid #8e959c4a;">
+                    <div style="Margin-left: 20px;Margin-right: 20px;">
+                      <div style="mso-line-height-rule: exactly;mso-text-raise: 4px;">
+                        <h3 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #281557;font-size: 18px;line-height: 26px;font-family: Avenir,sans-serif;">
+                          <span style="color:#8e959c">Hello ${userName},</span>
+                        </h3>
+                        <p style="Margin-top: 12px;Margin-bottom: 20px;font-family: open sans,sans-serif;">
+                          <span class="font-open-sans">
+                            <span style="color:#8e959c">${messageBody}</span>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+  
+                    <div style="Margin-left: 20px;Margin-right: 20px;">
+                      <div class="btn btn--shadow btn--medium" style="text-align:center;">
+                        <![if !mso]>
+                        <a style="border-radius: 4px;
+                        display: inline-block;
+                        font-size: 16px;
+                        font-weight: bold;
+                        line-height: 25px;
+                        padding: 11px 20px 11px 20px;
+                        text-align: center;
+                        text-decoration: none !important;
+                        transition: opacity 0.1s ease-in;
+                        color: #ffffff !important;
+                        box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
+                        background-color: #85a64b;
+                        font-family: Lato,sans-serif;"
+                          href="">${button}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="mso-line-height-rule: exactly;" role="contentinfo">
+                <div class="layout email-footer" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
+                  <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;">
+                    <div class="column wide" style="text-align: left;font-size: 12px;line-height: 19px;color: #adb3b9;font-family: sans-serif;Float: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);">
+                      <h style="border: 1px solid #f2f4f0;">
+                      <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 10px;Margin-bottom: 10px;">
+                        <table class="email-footer__links emb-web-links" style="border-collapse: collapse;table-layout: fixed;" role="presentation">
+                          <tbody>
+                            <tr role="navigation">
+                              <td class="emb-web-links" style="padding: 0;width: 26px;">
+                                <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #adb3b9;" href="http://facebook.com/affiammuta">
+                                  <img style="border: 0;" src="https://i2.createsend1.com/static/eb/master/13-the-blueprint-3/images/facebook.png"
+                                    width="26" height="26" alt="Facebook" />
+                                </a>
+                              </td>
+                              <td class="emb-web-links" style="padding: 0 0 0 3px;width: 26px;">
+                                <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #adb3b9;" href="http://twitter.com/affiammuta">
+                                  <img style="border: 0;" src="https://i3.createsend1.com/static/eb/master/13-the-blueprint-3/images/twitter.png"
+                                    width="26" height="26" alt="Twitter" />
+                                </a>
+                              </td>
                             </tr>
-                            <tr>
-                                <td style="padding: 0 20px;">
-                                    <!-- Button : BEGIN -->
-                                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
-                                        <tr>
-                                            <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                                ${button}
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 40px !important;">
-                                <tr>
-                                    <td style="padding: 20px; font-family: sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #ffffff; background: #626A71;">
-                                        <br> Talk to us on the phone (234) 815-0600-321
-                                        <br>
-                                        <span class="unstyle-auto-detected-links">
-                                            <br>
-                                            <br> Enugu Lifestyle & Golf City, Kilometer 7, Enugu Port Harcourt, Expressway Centenary
-                                            City, Enugu Nigeria
-                                            <br>
-                                            <br> © 2018 AFFIAMMUTA</span>
-                                    </td>
-                                </tr>
-                            </table>
-        </div>
-    </center>
-    <h4 style="text-align: center">To stop recieving notifications, you can <a href="https://affiammuta.herokuapp.com">Unsubscribe</a></h4>
-</body>
-</html>`
+                          </tbody>
+                        </table>
+                        <div style="font-size: 12px;
+                        line-height: 19px;
+                        Margin-top: 18px;">
+                          <div>BROUGHT TO YOU BY AFFIAMMUTA
+                            <br /> Talk to us on phone +2347060811570
+                            <br /> Email to mail@affiammuta.com
+                            <br /> Kilometer 7, Enugu-Port Harcourt, Expressway Centenary
+                            <br /> City, Enugu Nigeria
+                            <br /> Want to Unsubscribe? We are sorry to see you go, but happy to make it easy for you.
+                            <unsubscribe
+                              style="text-decoration: underline;"><a href="#" style="color: inherit">Unsubscribe</a></unsubscribe>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column narrow" style="text-align: left;font-size: 12px;line-height: 19px;color: #adb3b9;font-family: sans-serif;Float: left;max-width: 320px;min-width: 200px; width: 320px;">
+                      <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 10px;Margin-bottom: 10px;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="mso-line-height-rule: exactly;line-height: 40px;font-size: 40px;">&nbsp;</div>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </body>
+  
+  </html>`
 
     var mailOptions = {
         from: '"Affia-Mmuta.com"',

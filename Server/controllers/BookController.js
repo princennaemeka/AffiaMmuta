@@ -19,7 +19,7 @@ exports.addBook = function (req, res){
         description: req.body.description
     };
 
-    //Use a promise based method to upload content before adding url to database
+    //Use a promise based method to upload content before saving url to database
     try {
         cloud.uploadToCloud(data.bookImage).then((result)=>{
             data.bookImage = result.url;
@@ -36,34 +36,62 @@ exports.addBook = function (req, res){
 }
 
 exports.deleteBook = function (req, res){
-    var data = {_id: req.params.id};
-    return service.deleteBook(req, res, data);
+    try {
+        var data = {_id: req.params.id};
+        return service.deleteBook(req, res, data);
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
 
 exports.updateBook = function (req, res){
-    var id = req.params.id;
-    var options = req.body;
-    return service.updateBook(req, res, id, options);
+    try {
+        var id = req.params.id;
+        var options = req.body;
+        return service.updateBook(req, res, id, options);
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
 
 exports.getBookById = function (req, res){
-    var id = req.params.id;
-    return service.getBookById(req, res, id);
+    try {
+        var id = req.params.id;
+        return service.getBookById(req, res, id);
+    } catch (exception) {
+        console.log("Error : "+exception);
+    }
 }
 
 exports.getBooks = function (req, res,){
-    return service.getAllBooks(req, res, {});
+    try {
+        return service.getAllBooks(req, res, {});
+    } catch(exception) {
+        console.log("Error : "+exception);
+    }
 }
 
 exports.getBooksByCategory = function(req, res){
-    return service.getAllBooks(req, res, {category: req.params.category});
+    try {
+        return service.getAllBooks(req, res, {category: req.params.category});
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
 
 exports.getBookByParam = function (req, res){
-     var options = req.query;
-     return service.getBookByParam(req, res, options);
+    try {
+        var options = req.query;
+        return service.getBookByParam(req, res, options);
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
 
 exports.getLatestBooks = function(req, res){
-    return service.getRecentBooks(req, res, Number.parseInt(req.query.count));
+    try {
+        return service.getRecentBooks(req, res, Number.parseInt(req.query.count));   
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
