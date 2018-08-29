@@ -1,7 +1,7 @@
 var mongoose = require ('mongoose');
 
 
-var CommentSchema = moongose.Schema({
+var CommentSchema = mongoose.Schema({
     time: Date,
     commentBody: String,
     book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
