@@ -8,6 +8,7 @@ exports.addPayment = function (req, res){
     var data = {
         user: req.body.user,
         book: req.body.book,
+        referenceId: req.body.referenceId,
     };
   //validate event
 //  var hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
