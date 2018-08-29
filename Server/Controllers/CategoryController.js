@@ -4,7 +4,7 @@ var service = require('../Services/CategoryService');
 exports.addCategory = function (req, res){
     var data = {
         book: req.body.book,
-        title: req.body.title
+        categoryTitle: req.body.categoryTitle
     };
     return service.addCategory(req, res, data);
 }
