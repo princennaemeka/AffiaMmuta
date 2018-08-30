@@ -13,7 +13,7 @@ var BookSchema = mongoose.Schema({
     commentCount: {type: Number, default: 0},
     buyersCount: {type: Number, default: 0},
     ikenga: {type: Number, default: 0},
-    category: {type:mongoose.Schema.Types.ObjectId,ref:'Category'},
+    category: String,
     description: String
 });
 
