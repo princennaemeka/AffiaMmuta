@@ -9,7 +9,7 @@ exports.addBookToLibrary = function (req, res, data){
                 userData.books.push(data.books);
                 userData.save();
                 bookModel.findById(data.books, function(err, book){
-                    book.buyersCount++;
+                    book.buyersCount = book.buyersCount + 1;
                     book.save();
                 });
             } else {
