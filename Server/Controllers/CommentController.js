@@ -1,5 +1,5 @@
 var model = require('../models/Comment');
-var service = require('../services/CommentService');
+var service = require('../Services/CommentService');
 
 exports.addComment = function (req, res){
     var data = {
