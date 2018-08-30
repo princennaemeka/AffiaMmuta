@@ -23,8 +23,9 @@ BaseRepository.prototype.update= function(id, options, callback){
     this.model.findByIdAndUpdate(id, options, callback);
 }
 
-BaseRepository.prototype.getWithPopulate = function(options, columns, param, param2, callback){
-    this.model.find(options, columns).populate(param).populate(param2).exec(callback);
+BaseRepository.prototype.getRecentBooks = function(count, options, columns, callback){
+    var query = this.model.find(options, columns, {limit: count, sort: {'_id': -1}});
+    query.exec(callback);
 }
 
 module.exports = function(model){
