@@ -1,4 +1,4 @@
-var repository = require('../repositories/PaymentRepository');
+var repository = require('../Repositories/PaymentRepository');
 var model = require('../Models/Payment');
 
 exports.addPayment = function (req, res, data){
