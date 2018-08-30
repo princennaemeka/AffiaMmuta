@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../models/Comment')
-var CommentController = require('../controllers/CommentController');
+var CommentController = require('../Controllers/CommentController');
 
 /*GET Comment listing. */
 router.post('/create', CommentController.addComment);
