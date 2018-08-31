@@ -27,6 +27,10 @@ BaseRepository.prototype.getWithPopulate = function(options, columns, param, par
     this.model.find(options, columns).populate(param).populate(param2).exec(callback);
 }
 
+BaseRepository.prototype.get = function(data, callback){
+    this.model.find(data, callback);
+}
+
 module.exports = function(model){
     return new BaseRepository(model);
 }

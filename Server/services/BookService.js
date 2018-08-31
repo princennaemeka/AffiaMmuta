@@ -75,3 +75,15 @@ exports.increaseClap = function(req, res, id, ikenga){
         }
     });
 }
+
+exports.searchBooks = function(req, res, data){
+    repository.get(data, function(err, Book){
+        if (err) res.json({err: err, message: 'error, book not available'});
+         else {
+             res.json (Book);
+            }
+        });
+}
+        
+
+

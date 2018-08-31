@@ -13,5 +13,6 @@ router.post('/update/:id', BookController.updateBook);
 router.post('/addBook', uploadService.upload.any(), BookController.addBook);
 router.get('/latest', BookController.getLatestBooks);
 router.get('/:category', BookController.getBooksByCategory);
+router.get('/search/:data',BookController.searchBooks);
 
 module.exports = router;
