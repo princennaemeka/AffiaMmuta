@@ -76,13 +76,11 @@ exports.increaseClap = function(req, res, id, ikenga){
     });
 }
 
-exports.searchBooks = function(req, res, data){
-    repository.get(data, function(err, Book){
+exports.searchBooks = function(req, res, title){
+   model.find({'title': {$regex: title, $options: 'i'}}, function(err, Book){
         if (err) res.json({err: err, message: 'error, book not available'});
-         else {
-             res.json (Book);
-            }
-        });
+        res.json(Book);
+    });
 }
         
 
