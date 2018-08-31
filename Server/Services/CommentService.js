@@ -1,6 +1,7 @@
 var bookRepository = require('../repositories/BookRepository');
 var repository = require('../repositories/CommentRepository');
 var bookController = require('../controllers/BookController');
+var model = require('../models/Comment');
 
 exports.addComment = function (req, res, data){
     repository.add(data, function(err, comment){
@@ -35,9 +36,14 @@ exports.getCommentById = function (req, res, id){
     });
 }
 
-exports.getAllComments = function(req, res){
-    repository.getWithPopulate({},'-__v',  {path:'book',select:'-__v -comments'},'', function(err, comments){
-        if (err) res.json({err:err, message:'error, could not retrieve comments'});
-        res.json(comments);
-    });
+exports.getAllComments = function(req, res, bookId){
+    model.find({book: bookId}, '-__v', function(err, comments){
+        if (err) {
+            res.json({err: err, message: 'error, could not retieve book comments'});
+        } else {
+            res.json(comments);
+        }
+    }).populate('user');
+    // repository.getAll({book: bookId}, '-__v', function(err, comments){
+    // });
 }
