@@ -88,14 +88,10 @@ exports.getLatestBooks = function(req, res){
 }
 
 exports.searchBooks = function(req, res,){
-    try { 
-    var data = {
-        title : req.params.title,
-        author : req.params.author
-     } 
-     return service.searchBooks(req, res, data);
-
-       } catch (exception){
+   try {
+      var title = req.params.title;
+     return service.searchBooks(req, res, title);
+    } catch (exception){
         console.log("Error : "+exception);
     }
 
