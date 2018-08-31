@@ -44,15 +44,6 @@ exports.deleteBook = function (req, res){
     }
 }
 
-exports.updateBook = function (req, res){
-    try {
-        var id = req.params.id;
-        var options = req.body;
-        return service.updateBook(req, res, id, options);
-    } catch (exception){
-        console.log("Error : "+exception);
-    }
-}
 
 exports.getBookById = function (req, res){
     try {
@@ -91,6 +82,28 @@ exports.getBookByParam = function (req, res){
 exports.getLatestBooks = function(req, res){
     try {
         return service.getRecentBooks(req, res, Number.parseInt(req.query.count));   
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
+}
+
+exports.searchBooks = function(req, res,){
+   try {
+      var title = req.params.title;
+     return service.searchBooks(req, res, title);
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
+
+}
+
+
+
+exports.updateBook = function (req, res){
+    try {
+        var id = req.params.id;
+        var options = req.body;
+        return service.updateBook(req, res, id, options);
     } catch (exception){
         console.log("Error : "+exception);
     }
