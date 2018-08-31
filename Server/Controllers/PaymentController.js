@@ -11,6 +11,7 @@ exports.addPayment = function (req, res){
         book: req.body.book,
         referenceId: req.body.referenceId,
     };
+   return service.addPayment(req, res, data);
   //validate event
 //  var hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
   //if (hash == req.headers['x-paystack-signature']) {
@@ -19,7 +20,8 @@ exports.addPayment = function (req, res){
     // Do something with event  
   //}
  // res.send(200);
-    return libraryService.addBookToLibrary(req, res, data);
+
+    //return libraryService.addBookToLibrary(req, res, data);
 }
 
 exports.deletePayment = function (req, res){

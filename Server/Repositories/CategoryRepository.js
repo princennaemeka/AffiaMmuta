@@ -1,4 +1,4 @@
-var model = require ('../models/Category');
+var model = require ('../Models/Category');
 var BaseRepository = require ('../repositories/BaseRepository');
 
 function CategoryRepository(){

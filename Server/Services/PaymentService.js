@@ -1,10 +1,16 @@
-var repository = require('../repositories/PaymentRepository');
+var repository = require('../Repositories/PaymentRepository');
 var model = require('../Models/Payment');
+var libraryService = require('../Services/LibraryService')
 
 exports.addPayment = function (req, res, data){
     repository.add(data, function(err){
-        if (err) res.json ({err: err, message: 'error, payment could not added'});
-        res.json ({message: 'payment added successfully'});
+        if (err) { res.json ({err: err, message: 'error, payment could not added'}); } else {
+            var bookData = {
+                user: data.user,
+                books: data.book
+            }
+            libraryService.addBookToLibrary(req, res, bookData);
+        }
     });
 }
 

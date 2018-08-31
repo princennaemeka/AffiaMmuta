@@ -1,5 +1,5 @@
 var model = require('../models/Comment');
-var service = require('../services/CommentService');
+var service = require('../Services/CommentService');
 
 exports.addComment = function (req, res){
     var data = {
@@ -7,7 +7,6 @@ exports.addComment = function (req, res){
         commentBody: req.body.commentBody,
         book: req.body.book,
         time: Date.now(),
-        commentCount: req.body.commentCount,
     }
     return service.addComment(req, res, data);
 }
@@ -18,7 +17,7 @@ exports.deleteComment = function (req, res){
 }
 
 exports.getComments = function (req, res){
-    return service.getAllComments(req, res,);
+    return service.getAllComments(req, res, req.params.id);
 }
 
 exports.getCommentByParam = function (req, res){
