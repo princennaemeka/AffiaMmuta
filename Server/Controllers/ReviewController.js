@@ -4,6 +4,7 @@ var ReviewService = require('../Services/ReviewService');
 //this should run after successful book(s) purchase
 exports.addBookToLibrary = function(req, res){
     var data = {
+        name: req.body.name,
         email: req.body.email,
         reviewBody: req.body.reviewBody
     };

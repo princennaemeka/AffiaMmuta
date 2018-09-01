@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var ReviewSchema = mongoose.Schema({
-   reviewBody: String,
+    name: String,
+    email: String,
+    reviewBody: String,
 });
 
 module.exports = mongoose.model('Review', ReviewSchema);
