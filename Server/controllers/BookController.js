@@ -72,8 +72,8 @@ exports.getBooksByCategory = function(req, res){
 
 exports.getBookByParam = function (req, res){
     try {
-        var options = req.query;
-        return service.getBookByParam(req, res, options);
+        var options = req.query.title;
+        return service.searchByTitle(req, res, options);
     } catch (exception){
         console.log("Error : "+exception);
     }
