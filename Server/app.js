@@ -39,8 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost:27017/affiammuta', { useNewUrlParser: true });
-mongoose.connect('mongodb://affiammuta:affiammuta000@ds239359.mlab.com:39359/affiammuta', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/AffiaMmuta', { useNewUrlParser: true });
+//mongoose.connect('mongodb://affiammuta:affiammuta000@ds239359.mlab.com:39359/affiammuta', { useNewUrlParser: true });
 
 // configure passport sessions
 app.use(passport.initialize());

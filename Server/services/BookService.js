@@ -75,6 +75,7 @@ exports.increaseClap = function(req, res, id, ikenga){
         }
     });
 }
+
 exports.searchByTitle = function(req, res, title){
     model.find({title: { $regex: title, $options: 'gi' }}, function(err, books){
         if (err){
