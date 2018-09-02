@@ -1,4 +1,4 @@
-var model = require('../Models/User');
+var model = require('../Models/Review');
 var ReviewService = require('../Services/ReviewService');
 
 //this should run after successful book(s) purchase
