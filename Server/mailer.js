@@ -68,7 +68,7 @@ exports.sendMail = function sendMail(email, subject, userName, messageBody, butt
                         box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
                         background-color: #85a64b;
                         font-family: Lato,sans-serif;"
-                          href="">${button}</a>
+                          href="https://affiammu.herokuapp.com/">${button}</a>
                       </div>
                     </div>
                   </div>

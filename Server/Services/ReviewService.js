@@ -1,4 +1,4 @@
-var repository = require('../Repositories/UserRepository');
+var repository = require('../Repositories/ReviewRepository');
 var mailer = require('../mailer');
 
 exports.addReview = function(req, res, data){
@@ -7,7 +7,7 @@ exports.addReview = function(req, res, data){
         res.json({message: 'review submitted successfully'});
         var button = `Go to Market`;
         var body = 'Thank you for your constructive review, it will help us in our committment to increasing igbo literacy with technology.'
-        mailer.sendMail(data.email, 'Affia-Mmuta Support', 'Supporter', body, button);
+        mailer.sendMail(data.email, 'Affia-Mmuta Support', data.name, body, button);
     });
 }
 
