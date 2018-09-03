@@ -10,7 +10,8 @@ exports.uploadToCloud = function(filename){
     return new Promise(resolve => {
         cloudinary.uploader.upload(filename, function(result) 
         { 
-            resolve({url: result.url, ID: result.public_id});
+            //console.log(result);
+            resolve({url: result.secure_url, ID: result.public_id});
         });
     });
 }
